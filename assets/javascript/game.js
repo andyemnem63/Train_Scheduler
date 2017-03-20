@@ -70,31 +70,16 @@ var minutesAwayData = '';
     		// Next Train
 			nextTrain = moment().add(tMinutesTillTrain, "minutes");
 			nextTrainFormat = moment(nextTrain).format('hh:mm');
-		    
-		    //CurrentTime
-		    //TrainName
-		 //    console.log(trainName);
-		 //    //Destination
-		 //    console.log(dest);
-		 //    //Frequency
-		 //    console.log(freq);
-			// //Arrival Time
-			// console.log("ARRIVAL TIME: " + nextTrainFormat);
-			// //Minutes Away
-			// console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
-		 //    //Current Time
-		 //    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
-
-		//Adds train information to database under Train_Schedule/randomKey
+		
 		database.ref('/trainSchedule').push({
 			trainName: trainName,
 			destination: dest,
 			arrival: nextTrainFormat,
 			minutesAway: tMinutesTillTrain,
 			frequency: freq 
-		}); 
-	
-}); 
+		}); 	
+	}); 
+		
 		database.ref('/trainSchedule').on('child_added',function(snap){
 					//Testing
 					trainNameData = snap.val().trainName;
@@ -112,14 +97,5 @@ var minutesAwayData = '';
 						newTd.appendTo(newTr);
 					}	
 					$('.table').append(newTr);
-
 		});
-
-
-
-
-
-
-
-
 });// End of line
